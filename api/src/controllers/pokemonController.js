@@ -83,6 +83,8 @@ module.exports = {
     },
     createPokemon: async (req, res) => {
         try {
+            let { name, image, hp, attack, defense, speed, height, weight } = req.body
+
             
         } catch (error) {
             
