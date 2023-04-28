@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { Pokemon } = require('../db')
 
 module.exports = {
     getPokemons: async (req, res) => {
@@ -31,19 +32,53 @@ module.exports = {
     },
     getPokemonById: async (req, res) => {
         try {
-            let { id } = req.params
-            
+            let { idPokemon } = req.params
+            let getPokemon
+            if(idPokemon.length > 4) {
+                getPokemon = await Pokemon.findOne({ where: {id: idPokemon}})
+            }
+            if(!getPokemon) {
+                await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)
+                .then(res => {
+                    let { id, name } = res.data
+                    let pokemonTypes = res.data.types.map(data => data.type.name)
+                    getPokemon = {
+                        id,
+                        name,
+                        image: res.data.sprites.front_default,
+                        types: pokemonTypes
+                    }
+                })
+            }
+            res.status(200).json(getPokemon)
 
-
-        } catch (error) {
-            
+        } catch (err) {
+            res.status(400).json({error: err.message})
         }
     },
     getPokemonByName: async (req, res) => {
         try {
-            
-        } catch (error) {
-            
+            let { pokemonName } = req.query
+            pokemonName = pokemonName.toLowerCase()
+            let getPokemon
+            getPokemon = await Pokemon.findOne({ where: {name: pokemonName}})
+            if(!getPokemon) {
+                await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(res => {
+                    let { id, name } = res.data
+                    let pokemonTypes = res.data.types.map(data => data.type.name)
+                    getPokemon = {
+                        id,
+                        name,
+                        image: res.data.sprites.front_default,
+                        types: pokemonTypes
+                    }
+                })
+            }
+            res.status(200).json(getPokemon)
+
+        } catch (err) {
+            res.status(400).json({error: err.message})
         }
     },
     createPokemon: async (req, res) => {
