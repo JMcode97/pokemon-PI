@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { Pokemon } = require('../db')
+const { Pokemon, Type } = require('../db')
 
 module.exports = {
     getPokemons: async (req, res) => {
@@ -83,18 +83,61 @@ module.exports = {
     },
     createPokemon: async (req, res) => {
         try {
-            let { name, image, hp, attack, defense, speed, height, weight } = req.body
+            let { name, image, hp, attack, defense, speed, height, weight, types } = req.body
 
-            
-        } catch (error) {
-            
+            let getTypes = await Promise.all(types.map(type => Type.findOrCreate({
+                where: {name: type},
+                defaults: {name: type},
+            })))
+            getTypes = getTypes.map(el => el[0].id)
+
+            let [pokemon, created] = await Pokemon.findOrCreate({
+                where: { name },
+                defaults: {
+                    name,
+                    image,
+                    hp,
+                    attack,
+                    defense,
+                    speed,
+                    height,
+                    weight
+                }
+            })
+            pokemon.addTypes(getTypes)
+
+            if(!created) {
+              return res.status(200).send('Pokemon already exists...')  
+            }
+
+            res.status(200).json(pokemon)
+
+        } catch (err) {
+            res.status(400).json({error: err.message})
         }
     },
     getPokemonTypes: async (req, res) => {
         try {
+            const allTypes = []
+            let URL = 'https://pokeapi.co/api/v2/type'
+            await axios.get(URL)
+            .then(res => {
+                res.data.results.map(el => allTypes.push(el.name))
+            })
+
+            await Promise.all(allTypes.map(type => {
+                Type.findOrCreate({
+                    where: {name: type},
+                    defaults: {
+                        name: type
+                    }
+                })
+            }))
+
+            res.status(200).json(allTypes)
             
-        } catch (error) {
-            
+        } catch (err) {
+            res.status(400).json({error: err.message})
         }
     },
 }
