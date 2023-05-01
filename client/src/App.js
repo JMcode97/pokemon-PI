@@ -7,20 +7,20 @@ import Landing from './components/Landing/Landing';
 function App() {
   return (
     <>
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route path='/home'>
-          <Home />
-        </Route>
-        
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path='/home'>
+            <Home />
+          </Route>
 
 
-        <Route path='/'>
-          <Landing />
-        </Route>
-      </Switch>
-    </Router>
+
+          <Route path='/'>
+            <Landing />
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }

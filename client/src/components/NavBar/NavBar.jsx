@@ -11,10 +11,9 @@ const NavBar = () => {
                 pathname !== '/' ? (
                     <div
                     className={styles.container}>
-                    <h3>Soy la barra de navegacion!</h3>
-                    <button>
-                        <Link to='/home'>Home</Link>
-                    </button>
+                    <Link to='/home'>
+                        <button>HOME</button>
+                    </Link>
                     </div> 
                 ) : (null)
             }
