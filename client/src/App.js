@@ -1,10 +1,27 @@
 import './App.css';
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Home from './components/Home/Home';
+import NavBar from './components/NavBar/NavBar';
+import Landing from './components/Landing/Landing';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
-    </div>
+    <>
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route path='/home'>
+          <Home />
+        </Route>
+        
+
+
+        <Route path='/'>
+          <Landing />
+        </Route>
+      </Switch>
+    </Router>
+    </>
   );
 }
 
