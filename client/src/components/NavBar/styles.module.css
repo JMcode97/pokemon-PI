@@ -6,6 +6,20 @@
     background: white;
     position: fixed;
     height: 100px;
-    border-bottom: 2px solid #363b81;
+    border-bottom: 3px solid #363b81;
     top: 0;
+}
+
+.container button {
+    border: 3px solid #363b81;
+    border-radius: 5px;
+    padding: 10px;
+    background: #363b81;
+    color: white;
+    transition: all 0.2s;
+}
+
+.container button:hover {
+    color: #363b81;
+    background: #5db9ff;
 }

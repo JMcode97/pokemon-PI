@@ -1,0 +1,74 @@
+:root {
+    --bug: #ACBB24;
+    --dark: #503C2C;
+    --dragon: #7661DE;
+    --electric: #F8C748;
+    --fairy: #F3B0F5;
+    --fighting: #84371F;
+    --fire: #ED3F0D;
+    --flying: #9BACF1;
+    --ghost: #5C5EAC;
+    --grass: #7FC544;
+    --ground: #D5B562;
+    --ice: #A8E9FF;
+    --normal: #C6C1BB;
+    --poison: #924794;
+    --psychic: #EA497F;
+    --rock: #BAA25A;
+    --steel: #B7B7C6;
+    --water: #3B97FA;
+    --unknown: #0E0E0E;
+}
+
+.container {
+    border: 2px solid #363b81;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.image img {
+    width: 50%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.info h1 {
+    margin: 0;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    color: rgb(100, 100, 100);
+}
+
+.info div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.info div span {
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    color: white;
+}

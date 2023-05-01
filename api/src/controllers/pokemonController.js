@@ -5,7 +5,7 @@ module.exports = {
     getPokemons: async (req, res) => {
         try {
             const allPokemons = []
-            let URL = 'https://pokeapi.co/api/v2/pokemon?limit=10'
+            let URL = 'https://pokeapi.co/api/v2/pokemon?limit=12'
             let getPokemons = await axios.get(URL)
             let pokemonsUrl = getPokemons.data.results.map(data => data.url)
             let requests = pokemonsUrl.map(url => axios.get(url))
