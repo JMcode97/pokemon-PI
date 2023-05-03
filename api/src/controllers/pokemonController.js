@@ -5,7 +5,7 @@ module.exports = {
     getPokemons: async (req, res) => {
         try {
             const allPokemons = []
-            let URL = 'https://pokeapi.co/api/v2/pokemon?limit=12'
+            let URL = 'https://pokeapi.co/api/v2/pokemon?limit=30'
             let getPokemons = await axios.get(URL)
             let pokemonsUrl = getPokemons.data.results.map(data => data.url)
             let requests = pokemonsUrl.map(url => axios.get(url))
@@ -134,7 +134,9 @@ module.exports = {
                 })
             }))
 
-            res.status(200).json(allTypes)
+            const typesDB = await Type.findAll()
+
+            res.status(200).json(typesDB)
             
         } catch (err) {
             res.status(400).json({error: err.message})
