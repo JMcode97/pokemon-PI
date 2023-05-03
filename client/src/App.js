@@ -16,7 +16,7 @@ function App() {
 
 
 
-          <Route path='/'>
+          <Route exact path='/'>
             <Landing />
           </Route>
         </Switch>

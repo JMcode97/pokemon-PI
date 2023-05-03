@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from './styles.module.css'
-import axios from 'axios'
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
-    const [pokemons, setPokemons] = useState([])
+    const dispatch = useDispatch()
+    const pokemons = useSelector(state => state.allPokemons)
     const [currentPage, setCurrentPage] = useState(1)
 
     const cardsPerPage = 12
@@ -14,8 +15,7 @@ const Home = () => {
     const currentCards = pokemons.slice(firstCardsIndex, lastCardsIndex)
 
     useEffect(() => {
-        axios.get('http://localhost:3001/pokemons')
-        .then(({ data }) => setPokemons(data))
+        
     }, [])
 
     return(
