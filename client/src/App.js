@@ -1,13 +1,12 @@
 import './App.css';
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Home from './components/Home/Home';
+import { Route, Switch } from "react-router-dom";
+import Home from './views/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import Landing from './components/Landing/Landing';
+import Landing from './views/Landing/Landing';
 
 function App() {
   return (
     <>
-      <Router>
         <NavBar />
         <Switch>
           <Route path='/home'>
@@ -20,7 +19,6 @@ function App() {
             <Landing />
           </Route>
         </Switch>
-      </Router>
     </>
   );
 }

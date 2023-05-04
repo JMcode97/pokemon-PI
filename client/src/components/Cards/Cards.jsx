@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useState } from 'react'
+import Card from '../Card/Card'
 import styles from './styles.module.css'
-import Card from "../Card/Card";
-import Pagination from "../Pagination/Pagination";
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "../../redux/actions";
 
-const Home = () => {
-    const dispatch = useDispatch()
-    const pokemons = useSelector(state => state.allPokemons)
+const Cards = ({ pokemons }) => {
     const [currentPage, setCurrentPage] = useState(1)
-
     const cardsPerPage = 12
     const lastCardsIndex = currentPage * cardsPerPage
     const firstCardsIndex = lastCardsIndex - cardsPerPage
     const currentCards = pokemons.slice(firstCardsIndex, lastCardsIndex)
 
-    useEffect(() => {
-        dispatch(getPokemons())
-    }, [])
+    let pages = []
+    for(let i = 1; i <= Math.ceil(pokemons.length/cardsPerPage); i++) {
+        pages.push(i)
+    }
 
     return(
         <>
@@ -37,16 +32,24 @@ const Home = () => {
                         })
                     }
                 </div>
-                <div>
-                    <Pagination 
-                    totalCards={pokemons.length}
-                    cardsPerPage={cardsPerPage}
-                    setCurrentPage={setCurrentPage} 
-                    currentPage={currentPage} />
+                <div
+                className={styles.pageButtons} >
+                    {
+                        pages?.map((page, index) => {
+                            return(
+                                <button 
+                                key={index}
+                                className={page === currentPage ? styles.active : null}
+                                onClick={() => setCurrentPage(page)} >
+                                {page}
+                                </button>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </>
     )
 }
 
-export default Home
+export default Cards
