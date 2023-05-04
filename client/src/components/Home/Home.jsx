@@ -3,6 +3,7 @@ import styles from './styles.module.css'
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
+import { getPokemons } from "../../redux/actions";
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const Home = () => {
     const currentCards = pokemons.slice(firstCardsIndex, lastCardsIndex)
 
     useEffect(() => {
-        
+        dispatch(getPokemons())
     }, [])
 
     return(
