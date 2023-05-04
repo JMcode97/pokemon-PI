@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { Pokemon } = require('../db')
+const { Pokemon, Type } = require('../db')
 
 const createPokemonObj = (res) => {
     // crear un objeto por cada pokemon
@@ -26,8 +26,17 @@ const createPokemonObj = (res) => {
 }
 
 module.exports = {
-    getAllPokemons: async () => {
+    getAllPokemons: async (name) => {
         const allPokemons = []
+        if(name) {
+            let pokemon
+            pokemon = await Pokemon.findOne({where: {name}})
+            if(!pokemon) {
+                await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+                .then(res => pokemon = createPokemonObj(res))
+            }
+            return pokemon
+        }
         // obtener pokemons de la base de datos y guardarlos en el array
         let pokemonsDB = await Pokemon.findAll()
         if(pokemonsDB.length > 0) allPokemons.push(pokemonsDB[0])
@@ -57,5 +66,31 @@ module.exports = {
             .then(res => createPokemonObj(res)) 
         }
         return getPokemon
+    },
+    createPokemon: async (name, image, hp, attack, defense, speed, height, weight, types) => {
+        let getTypes = await Type.findAll({
+            where: {name: types},
+        })
+        getTypes = getTypes.map(el => el.id)
+
+        let [pokemon, created] = await Pokemon.findOrCreate({
+            where: { name },
+            defaults: {
+                name,
+                image,
+                hp,
+                attack,
+                defense,
+                speed,
+                height,
+                weight
+            }
+        })
+        if(!created) {
+          return 'Pokemon already exists...'  
+        }
+        pokemon.addTypes(getTypes)
+
+        return pokemon
     }
 }

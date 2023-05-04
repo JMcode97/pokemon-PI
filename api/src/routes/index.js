@@ -11,12 +11,4 @@ const router = Router();
 router.use('/pokemons', pokemonsRouter)
 router.use('/types', typesRouter)
 
-
-// router.get('/pokemons', getPokemons)
-// router.get('/pokemons/name?', getPokemonByName)
-// router.get('/pokemons/:idPokemon', getPokemonById)
-// router.post('/pokemons', createPokemon)
-// router.get('/types', getPokemonTypes)
-
-
 module.exports = router;
