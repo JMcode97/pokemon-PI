@@ -20,7 +20,7 @@ const Card = ({ image, name, types }) => {
                                     <span
                                     key={type}
                                     style={{ backgroundColor: `var(--${type})`}} >
-                                    {type}
+                                        {type}
                                     </span>
                                 )
                             })

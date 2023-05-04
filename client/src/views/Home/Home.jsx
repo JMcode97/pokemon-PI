@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import styles from './styles.module.css'
+import styles from './styles.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from "../../redux/actions";
 import Cards from "../../components/Cards/Cards";
@@ -14,7 +14,10 @@ const Home = () => {
 
     return(
         <>
+        <div
+        className={styles.container} >
             <Cards pokemons={pokemons} />
+        </div>
         </>
     )
 }

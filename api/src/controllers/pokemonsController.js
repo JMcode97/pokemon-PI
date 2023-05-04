@@ -41,7 +41,7 @@ module.exports = {
         let pokemonsDB = await Pokemon.findAll()
         if(pokemonsDB.length > 0) allPokemons.push(pokemonsDB[0])
         // obtener url dentro de cada pokemon
-        let URL = 'https://pokeapi.co/api/v2/pokemon?limit=30'
+        let URL = 'https://pokeapi.co/api/v2/pokemon?limit=1300'
         let getPokemons = await axios.get(URL)
         let pokemonsUrl = getPokemons.data.results.map(data => data.url)
         // array de promesas
