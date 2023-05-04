@@ -41,7 +41,8 @@ module.exports = {
         let pokemonsDB = await Pokemon.findAll()
         if(pokemonsDB.length > 0) allPokemons.push(pokemonsDB[0])
         // obtener url dentro de cada pokemon
-        let URL = 'https://pokeapi.co/api/v2/pokemon?limit=1300'
+        
+        let URL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=50'
         let getPokemons = await axios.get(URL)
         let pokemonsUrl = getPokemons.data.results.map(data => data.url)
         // array de promesas
@@ -54,6 +55,25 @@ module.exports = {
                 allPokemons.push(createPokemonObj(res))
             })
         })
+
+        // let current = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=100'
+        // while(current) {
+        //     let getPokemons = await axios.get(current)
+        //     let pokemonsUrl = getPokemons.data.results.map(data => data.url)
+        //     // array de promesas
+        //     let requests = pokemonsUrl.map(url => axios.get(url))
+        //     // llamado al array de promesas para obtener informacion de cada pokemon
+        //     await axios.all(requests)
+        //     .then(responses => {
+        //         responses.forEach(res => {
+        //             // crear objeto pokemon y guardarlo en array
+        //             allPokemons.push(createPokemonObj(res))
+        //         })
+        //     })
+        //     console.log(getPokemons.data.next)
+        //     current = getPokemons.data.next
+        // }
+        
         return allPokemons
     },
     getById: async (idPokemon) => {
