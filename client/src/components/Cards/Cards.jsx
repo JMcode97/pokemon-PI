@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Card from '../Card/Card'
 import styles from './styles.module.css'
+import { Link } from 'react-router-dom'
 
 const Cards = ({ pokemons }) => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -19,15 +20,19 @@ const Cards = ({ pokemons }) => {
             <div
             className={styles.container} >
                 <div
-                className={styles.cards}>
+                className={styles.cards} >
                     {
                         currentCards?.map(({id, name, image, types}) => {
                             return(
-                                <Card 
+                                <Link 
                                 key={id}
-                                name={name}
-                                image={image}
-                                types={types} />
+                                to={`/details/${id}`}
+                                style={{textDecoration: 'none'}} >
+                                    <Card 
+                                    name={name}
+                                    image={image}
+                                    types={types} />                
+                                </Link>
                             )
                         })
                     }
