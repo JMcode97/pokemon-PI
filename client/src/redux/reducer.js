@@ -1,8 +1,8 @@
-// import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./actions"
-import { GET_ALL } from "./actions"
+import { FILTER, GET_ALL } from "./actions"
 
 const initState = {
-    allPokemons: []
+    allPokemons: [],
+    filteredPokemons: [],
 }
 
 const rootReducer = (state = initState, { type, payload }) => {
@@ -10,8 +10,16 @@ const rootReducer = (state = initState, { type, payload }) => {
         case GET_ALL:
             return {
                 ...state,
-                allPokemons: payload
-            }  
+                allPokemons: payload,
+                filteredPokemons: payload
+            }
+
+        case FILTER: {
+            // origin: saber si se va a filtrar de (todos, api, db)
+            // filter: filtrar por tipo
+            return
+
+        }    
 
         default:
             return {...state}

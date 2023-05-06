@@ -6,7 +6,7 @@ import Cards from "../../components/Cards/Cards";
 
 const Home = () => {
     const dispatch = useDispatch()
-    const pokemons = useSelector(state => state.allPokemons)
+    const pokemons = useSelector(state => state.filteredPokemons)
 
     useEffect(() => {
         dispatch(getPokemons())

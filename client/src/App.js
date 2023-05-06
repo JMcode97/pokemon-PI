@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from './views/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import Landing from './views/Landing/Landing';
+import Details from './views/Details/Details';
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
         <Switch>
           <Route path='/home'>
             <Home />
+          </Route>
+          <Route path='/details/:pokemon'>
+            <Details />
           </Route>
 
 
