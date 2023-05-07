@@ -60,8 +60,12 @@
     background: rgba(255, 255, 255, 0.6);
 }
 
+.statsName span, .statsValue span {
+    border-bottom: 1px solid rgb(216, 216, 216);
+}
+
 .statsTypes {
-    margin-top: 3.5%;
+    margin-top: 2.8%;
     display: flex;
     align-items: center;
     justify-content: center;
