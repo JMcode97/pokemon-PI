@@ -24,13 +24,38 @@ const createPokemonObj = (res) => {
         types: pokemonTypes,
     }
 }
+// armar el objeto de pokemon con informacion obtenida con Sequelize
+const createPokemonObjDB = (res) => {
+    let { hp, attack, defense, speed, id, name, image, weight, height, Types } = res[0].dataValues
+    let pokemonObj = {}
+    let pokemonTypes = Types.map(data => data.dataValues.name)
+    return pokemonObj = {
+        hp,
+        attack,
+        defense,
+        speed,
+        id,
+        name,
+        image,
+        weight,
+        height,
+        types: pokemonTypes,
+    }
+}
 
 module.exports = {
     getAllPokemons: async (name) => {
         const allPokemons = []
         if(name) {
             let pokemon
-            pokemon = await Pokemon.findOne({where: {name}})
+            await Pokemon.findOne({
+                where: {name},
+                include: {
+                    model: Type,
+                    attributes: ['name']
+                }
+            })
+            .then(res => pokemon = createPokemonObjDB(res))
             if(!pokemon) {
                 await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
                 .then(res => pokemon = createPokemonObj(res))
@@ -38,8 +63,17 @@ module.exports = {
             return pokemon
         }
         // obtener pokemons de la base de datos y guardarlos en el array
-        let pokemonsDB = await Pokemon.findAll()
-        if(pokemonsDB.length > 0) allPokemons.push(pokemonsDB[0])
+        await Pokemon.findAll({
+            include: {
+                    model: Type,
+                    attributes: ['name']
+                }
+        })
+        .then(responses => {
+            return(
+                responses.map(res => allPokemons.push(createPokemonObjDB([res])))
+            )
+        })
         // obtener url dentro de cada pokemon
         
         let URL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=60'
@@ -79,7 +113,14 @@ module.exports = {
     getById: async (idPokemon) => {
         let getPokemon
         if(idPokemon.length > 4) {
-            getPokemon = await Pokemon.findOne({ where: {id: idPokemon}})
+            await Pokemon.findOne({
+                where: {id: idPokemon},
+                include: {
+                    model: Type,
+                    attributes: ['name']
+                }
+            })
+            .then(res => getPokemon = createPokemonObjDB([res]))
         }
         if(!getPokemon) {
             getPokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)
