@@ -1,4 +1,4 @@
-import { CREATE, FILTER, GET_ALL, GET_TYPES } from "./actions"
+import { CREATE, DATA_ORDER, DATA_ORIGIN, DATA_TYPE, GET_ALL, GET_TYPES } from "./actions"
 
 const initState = {
     allPokemons: [],
@@ -30,12 +30,66 @@ const rootReducer = (state = initState, { type, payload }) => {
                 filteredPokemons: dataArray
             }
 
-        case FILTER: {
-            // origin: saber si se va a filtrar de (todos, api, db)
-            // filter: filtrar por tipo
-            return
+        case DATA_ORIGIN: 
+            const regexUUID = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
+            if(payload === 'all') {
+                return {
+                    ...state,
+                    filteredPokemons: state.allPokemons
+                }
+            }
 
-        }    
+            if(payload === 'db') {
+                let originDB = state.allPokemons.filter(pokemon => regexUUID.test(pokemon.id))
+
+                return {
+                    ...state,
+                    filteredPokemons: originDB
+                }
+            }
+
+            if(payload === 'api') {
+                let originDB = state.allPokemons.filter(pokemon => !regexUUID.test(pokemon.id))
+
+                return {
+                    ...state,
+                    filteredPokemons: originDB
+                }
+            }
+
+        case DATA_TYPE:
+            let filteredPokemons 
+            if(payload === 'all') {
+                filteredPokemons = state.filteredPokemons
+            }else {
+                filteredPokemons = state.allPokemons.filter(pokemon => pokemon.types.includes(payload))
+            }
+
+            return {
+                ...state,
+                filteredPokemons: filteredPokemons
+            }
+
+        case DATA_ORDER:
+            let orderedPokemons = [...state.allPokemons]
+            if(payload === 'asc'){
+                orderedPokemons.sort((a, b) => {
+                    if(a.id < b.id) return -1
+                    return 1
+                })
+            } 
+
+            if(payload === 'dsc'){
+                orderedPokemons.sort((a, b) => {
+                    if(a.id > b.id) return -1
+                    return 1
+                })
+            } 
+
+            return{
+                ...state,
+                filteredPokemons: orderedPokemons
+            }
 
         default:
             return {...state}

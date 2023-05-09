@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from './styles.module.css'
 import SearchBar from "../SearchBar/SearchBar";
+import Filters from "../Filters/Filters";
 
 const NavBar = () => {
     let { pathname } = useLocation()
@@ -20,9 +21,11 @@ const NavBar = () => {
                                 <button>CREAR</button>
                             </Link>
                         </div>
-
                         <div>
                             <SearchBar />
+                        </div>
+                        <div>
+                            <Filters />
                         </div>
                     </div> 
                 ) : (null)
