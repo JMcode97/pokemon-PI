@@ -8,6 +8,10 @@ const formValidation = (data) => {
         errors.name = 'El nombre no puede estar vacio'
     }
 
+    if(data.image === '') {
+        errors.image = 'La imagen no puede estar vacia'
+    }
+
     if(data.hp === '') {
         errors.hp = 'El stat HP no puede estar vacio'
     }

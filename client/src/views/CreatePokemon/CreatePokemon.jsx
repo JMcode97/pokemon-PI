@@ -7,10 +7,10 @@ import formValidation from './formValidation'
 const CreatePokemon = () => {
     const dispatch = useDispatch()
     const pokemonTypes = useSelector(state => state.pokemonTypes)
-    
+
     const [data, setData] = useState({
         name: '',
-        image: "/static/media/pokemonLogo.05b15868.png",
+        image: '',
         hp: '',
         attack: '',
         defense: '',
@@ -33,6 +33,7 @@ const CreatePokemon = () => {
 
     const [errors, setErrors] = useState({
         name: '',
+        image: '',
         hp: '',
         attack: '',
         defense: '',
@@ -93,6 +94,19 @@ const CreatePokemon = () => {
                     </div>
                         {
                             errors.name && <span className={styles.error} >{errors.name}</span>
+                        }
+                    <div>
+                        <label>Imagen </label>
+                        <input 
+                        type="text"
+                        name="image"
+                        required
+                        value={data.image}
+                        onChange={handleForm} 
+                        />
+                    </div>
+                        {
+                            errors.image && <span className={styles.error} >{errors.image}</span>
                         }
                     <div>
                         <label>Vida </label>
