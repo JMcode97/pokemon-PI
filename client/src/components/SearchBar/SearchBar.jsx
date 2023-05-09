@@ -1,6 +1,9 @@
 import { useState } from "react"
+import { useHistory } from "react-router-dom"
+import styles from './styles.module.css'
 
 const SearchBar = () => {
+    const history = useHistory()
     const [value, setValue] = useState()
 
     const handleInputChange = (e) => {
@@ -10,11 +13,14 @@ const SearchBar = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        history.push(`/details/${value.toLowerCase()}`)
+        setValue('')
     }
 
     return(
         <>
-            <div>
+            <div
+            className={styles.container} >
                 <input type="text"
                 placeholder="Ingresa un nombre o ID" 
                 value={value}
@@ -22,7 +28,7 @@ const SearchBar = () => {
 
                 <button
                 onClick={handleSubmit} >
-                    Buscar
+                    BUSCAR
                 </button>
             </div>
         </>

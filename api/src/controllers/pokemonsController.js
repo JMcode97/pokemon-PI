@@ -55,7 +55,9 @@ module.exports = {
                     attributes: ['name']
                 }
             })
-            .then(res => pokemon = createPokemonObjDB(res))
+            .then(res => {
+                if(res) pokemon = createPokemonObjDB([res])
+            })
             if(!pokemon) {
                 await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
                 .then(res => pokemon = createPokemonObj(res))

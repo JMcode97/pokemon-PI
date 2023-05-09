@@ -22,7 +22,7 @@ const Details = () => {
 
     useEffect(() => {
         getPokemon(pokemon)
-    }, [])
+    }, [pokemon])
     
     return(
         <>
