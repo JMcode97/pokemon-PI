@@ -20,9 +20,6 @@ function App() {
           <Route path='/create'>
             <CreatePokemon />
           </Route>
-
-
-
           <Route exact path='/'>
             <Landing />
           </Route>

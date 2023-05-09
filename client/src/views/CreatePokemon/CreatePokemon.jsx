@@ -36,6 +36,7 @@ const CreatePokemon = () => {
         hp: '',
         attack: '',
         defense: '',
+        types: '',
     })
     const [selectedTypes, setSelectedTypes] = useState([])
 
@@ -49,6 +50,8 @@ const CreatePokemon = () => {
     }
 
     const handleChange = (e) => {
+        if([...selectedTypes].length === 2) return setErrors({...errors, types: 'Solo puede seleccionar 2 tipos'})
+        setErrors({...errors, types: ''})
         setSelectedTypes([...selectedTypes, e.target.value])
     }
 
@@ -163,6 +166,9 @@ const CreatePokemon = () => {
                         onChange={handleForm} 
                         />
                     </div>
+                    {
+                        errors.types && <span className={styles.error} >{errors.types}</span>
+                    }
                     <div
                     className={styles.types} >
                         {
