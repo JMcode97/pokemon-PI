@@ -1,8 +1,9 @@
-import { FILTER, GET_ALL } from "./actions"
+import { CREATE, FILTER, GET_ALL, GET_TYPES } from "./actions"
 
 const initState = {
     allPokemons: [],
     filteredPokemons: [],
+    pokemonTypes: []
 }
 
 const rootReducer = (state = initState, { type, payload }) => {
@@ -12,6 +13,21 @@ const rootReducer = (state = initState, { type, payload }) => {
                 ...state,
                 allPokemons: payload,
                 filteredPokemons: payload
+            }
+
+        case GET_TYPES:
+            return {
+                ...state,
+                pokemonTypes: payload
+            }
+
+        case CREATE:
+            let dataArray = [...state.allPokemons]
+            dataArray.unshift(payload)
+            return {
+                ...state,
+                allPokemons: dataArray,
+                filteredPokemons: dataArray
             }
 
         case FILTER: {

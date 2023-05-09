@@ -16,6 +16,9 @@ const NavBar = () => {
                             <Link to='/home'>
                                 <button>HOME</button>
                             </Link>
+                            <Link to='/create'>
+                                <button>CREAR</button>
+                            </Link>
                         </div>
 
                         <div>

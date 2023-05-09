@@ -18,6 +18,7 @@
     --steel: #B7B7C6;
     --water: #3B97FA;
     --unknown: #0E0E0E;
+    --shadow: #955BCA;
 }
 
 .container {
@@ -74,4 +75,5 @@
     margin: 0 5px;
     color: white;
     font-weight: 700;
+    text-align: center;
 }

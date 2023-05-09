@@ -1,0 +1,96 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 100px;
+    height: calc(100vh - 100px);
+}
+
+.container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 2px solid #363b81;
+    background: rgba(255, 255, 255, 0.6);
+    width: 20%;
+    padding: 20px;
+}
+
+.container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: rgb(100, 100, 100);
+}
+
+.container form div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px 0;
+}
+
+.container form div label {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.container form div input {
+    text-align: center;
+}
+
+.types {
+    margin-top: 20px;
+}
+
+.types span {
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+}
+
+.types button {
+    color: white;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.types button:hover {
+    color: #363b81;
+}
+
+.container select {
+    width: 50%;
+    padding: 5px 0;
+    margin: 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.sendButton {
+    border: 3px solid #363b81;
+    border-radius: 5px;
+    padding: 10px;
+    background: #363b81;
+    color: white;
+    margin: 0 5px;
+    transition: all 0.2s;
+}
+
+.sendButton:hover {
+    color: #363b81;
+    background: #5db9ff;
+}
+
+.error {
+    text-align: center;
+    width: 100%;
+    color: red;
+}

@@ -145,12 +145,21 @@ module.exports = {
                 speed,
                 height,
                 weight
-            }
+            },
         })
         if(!created) {
           return 'Pokemon already exists...'  
         }
-        pokemon.addTypes(getTypes)
+        await pokemon.addTypes(getTypes)
+        await Pokemon.findOne({
+            where: {name},
+            include: {
+                model: Type,
+                attributes: ['name']
+            }
+        })
+        .then(res => pokemon = createPokemonObjDB([res]))
+
 
         return pokemon
     }

@@ -4,6 +4,7 @@ import Home from './views/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import Landing from './views/Landing/Landing';
 import Details from './views/Details/Details';
+import CreatePokemon from './views/CreatePokemon/CreatePokemon';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           </Route>
           <Route path='/details/:pokemon'>
             <Details />
+          </Route>
+          <Route path='/create'>
+            <CreatePokemon />
           </Route>
 
 
