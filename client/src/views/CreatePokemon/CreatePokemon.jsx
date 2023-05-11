@@ -22,6 +22,7 @@ const CreatePokemon = () => {
 
     const initialFormState = {
         name: '',
+        image: '',
         hp: '',
         attack: '',
         defense: '',

@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 
 const SearchBar = () => {
     const history = useHistory()
-    const [value, setValue] = useState()
+    const [value, setValue] = useState('')
 
     const handleInputChange = (e) => {
         e.preventDefault()
@@ -23,6 +23,7 @@ const SearchBar = () => {
             className={styles.container} >
                 <input type="text"
                 placeholder="Ingresa un nombre o ID" 
+                name='search'
                 value={value}
                 onChange={handleInputChange} />
 

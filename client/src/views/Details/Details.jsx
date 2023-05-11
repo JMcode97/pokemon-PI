@@ -61,9 +61,9 @@ const Details = () => {
                                     <span>{pokemonData?.hp}</span>
                                     <span>{pokemonData?.attack}</span>
                                     <span>{pokemonData?.defense}</span>
-                                    <span>{pokemonData?.speed}</span>
-                                    <span>{pokemonData?.height}</span>
-                                    <span>{pokemonData?.weight}</span>              
+                                    {pokemonData?.speed === '' ? <span> ? </span> : <span>{pokemonData?.speed}</span>}
+                                    {pokemonData?.height === '' ? <span> ? </span> : <span>{pokemonData?.height}</span>}
+                                    {pokemonData?.weight === '' ? <span> ? </span> : <span>{pokemonData?.weight}</span>}           
                                 </div>
                             </div> 
                             <div
