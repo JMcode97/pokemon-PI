@@ -131,7 +131,6 @@ module.exports = {
         return getPokemon
     },
     createPokemon: async (name, image, hp, attack, defense, speed, height, weight, types) => {
-        throw new Error('culo')
         name = name.toLowerCase()
         let getTypes = await Type.findAll({
             where: {name: types},
