@@ -40,7 +40,7 @@ const rootReducer = (state = initState, { type, payload }) => {
             }
 
             if(payload === 'db') {
-                let originDB = state.allPokemons.filter(pokemon => regexUUID.test(pokemon.id))
+                let originDB = state.filteredPokemons.filter(pokemon => regexUUID.test(pokemon.id))
 
                 return {
                     ...state,
@@ -49,7 +49,7 @@ const rootReducer = (state = initState, { type, payload }) => {
             }
 
             if(payload === 'api') {
-                let originDB = state.allPokemons.filter(pokemon => !regexUUID.test(pokemon.id))
+                let originDB = state.filteredPokemons.filter(pokemon => !regexUUID.test(pokemon.id))
 
                 return {
                     ...state,
@@ -71,24 +71,24 @@ const rootReducer = (state = initState, { type, payload }) => {
             }
 
         case DATA_ORDER:
-            let orderedPokemons = [...state.allPokemons]
+            let orderedName = [...state.filteredPokemons]
             if(payload === 'asc'){
-                orderedPokemons.sort((a, b) => {
-                    if(a.id < b.id) return -1
+                orderedName.sort((a, b) => {
+                    if(a.name < b.name) return -1
                     return 1
                 })
             } 
 
             if(payload === 'dsc'){
-                orderedPokemons.sort((a, b) => {
-                    if(a.id > b.id) return -1
+                orderedName.sort((a, b) => {
+                    if(a.name > b.name) return -1
                     return 1
                 })
-            } 
+            }
 
-            return{
+            return {
                 ...state,
-                filteredPokemons: orderedPokemons
+                filteredPokemons: orderedName
             }
 
         default:

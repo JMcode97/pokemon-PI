@@ -5,3 +5,7 @@
 .container select {
     padding: 10px;
 }
+
+.container select {
+    margin: 0 5px;
+}

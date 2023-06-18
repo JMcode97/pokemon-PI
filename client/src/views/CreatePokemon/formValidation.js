@@ -24,6 +24,18 @@ const formValidation = (data) => {
         errors.defense = 'El stat DEFENSE no puede estar vacio'
     }
 
+    if(data.hp <= 0) {
+        errors.hp = 'El stat HP no puede ser menor a 0'
+    }
+
+    if(data.attack <= 0) {
+        errors.attack = 'El stat ATTACK no puede ser menor a 0'
+    }
+
+    if(data.defense <= 0) {
+        errors.defense = 'El stat DEFENSE no puede ser menor a 0'
+    }
+
     return errors
 }
 

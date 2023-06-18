@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from '../Card/Card'
 import styles from './styles.module.css'
 import { Link } from 'react-router-dom'
@@ -14,6 +14,10 @@ const Cards = ({ pokemons }) => {
     for(let i = 1; i <= Math.ceil(pokemons.length/cardsPerPage); i++) {
         pages.push(i)
     }
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [pokemons])
 
     return(
         <>

@@ -17,7 +17,7 @@ const Filters = () => {
         }
     }
     const handleOrderFilter = (e) => {
-        if(e.target.value !== 'Orden') {
+        if(e.target.value !== 'Orden Alfabético') {
             dispatch(filterByOrder(e.target.value))
         }
     }
@@ -57,7 +57,7 @@ const Filters = () => {
 
                 <select
                 onChange={handleOrderFilter} >
-                    <option>Orden</option>
+                    <option>Orden Alfabético</option>
                     <option value="asc">ascendente</option>
                     <option value="dsc">descendente</option>
                 </select>
