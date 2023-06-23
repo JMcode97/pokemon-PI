@@ -6,8 +6,10 @@ export const DATA_ORIGIN = 'DATA_ORIGIN'
 export const DATA_TYPE = 'DATA_TYPE'
 export const DATA_ORDER = 'DATA_ORDER'
 
+axios.defaults.baseURL = 'https://pokemon-api-vxfr.onrender.com'
+
 export const getPokemons = () => {
-    let endpoint = 'http://localhost:3001/pokemons'
+    let endpoint = '/pokemons'
     return async (dispatch) => {
         try {
             await axios.get(endpoint)
@@ -24,7 +26,7 @@ export const getPokemons = () => {
 }
 
 export const getTypes = () => {
-    let endpoint = 'http://localhost:3001/types/'
+    let endpoint = '/types'
     return async (dispatch) => {
         try {
             await axios.get(endpoint)
@@ -41,7 +43,7 @@ export const getTypes = () => {
 }
 
 export const createPokemon = (form) => {
-    let endpoint = 'http://localhost:3001/pokemons/create/'
+    let endpoint = '/pokemons/create'
     return async (dispatch) => {
         try {
             await axios.post(endpoint, form)
