@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './styles.module.css'
 import { Link } from "react-router-dom";
+import logo from '../../assets/pokemonLogo.png'
 
 const Landing = () => {
     return(
@@ -9,7 +10,7 @@ const Landing = () => {
             className={styles.container} >
                 <div
                 className={styles.box} >
-                    <img src={require('../../assets/pokemonLogo.png').default} alt="logo" />
+                    <img src={logo} alt="logo" />
                     <h1>Bienvenid@ a la PokeApp!</h1>
                     <Link to='/home'
                     className={styles.boxButton}>
